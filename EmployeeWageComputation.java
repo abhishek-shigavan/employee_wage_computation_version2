@@ -2,7 +2,7 @@
  * EmployeeWageComputation 
  * 		--- Program to compute employee wage.
  * 
- * Checking attendance (i.e present / absent)
+ * Checking attendance (i.e present / part time / absent)
  * Computing daily wage of employee
  * 
  * 
@@ -12,11 +12,12 @@ public class EmployeeWageComputation {
 
 	//constant
 	public static final int IS_PRESENT=1;
+	public static final int IS_PART_TIEM=2;
 	public static final int WAGE_PER_HOUR=20;
 
 /**
    * Generate random attendance 
-   * (i.e present / absent)
+   * (i.e present / part time / absent)
    * and store it in variable
 	   * @return return attendance.
 	   * 
@@ -24,7 +25,7 @@ public class EmployeeWageComputation {
    */	
 	public static int attendanceChecker() {
 		
-		int attendance = (int)(Math.floor(Math.random() * 10) % 2);
+		int attendance = (int)(Math.floor(Math.random() * 10) % 3);
 		return attendance;
 	}
 
@@ -51,6 +52,10 @@ public class EmployeeWageComputation {
 		if(empAttendance == IS_PRESENT) {
 			empWorkingHour=8;
 			System.out.println("Employee is Present");
+		}
+		else if(empAttendance == IS_PART_TIEM) {
+			empWorkingHour=4;
+			System.out.println("Employee is Part Time Present");
 		}
 		else {
 			System.out.println("Employee is Absent");
