@@ -46,19 +46,23 @@ public class EmployeeWageComputation {
 		//variables
 		int empWorkingHour=0;
 		int empAttendance = attendanceChecker();
-
-		System.out.println("Welcome To Employee Wage Computation...!!!");
 		
-		if(empAttendance == IS_PRESENT) {
+		System.out.println("Welcome To Employee Wage Computation...!!!");		
+
+		switch(empAttendance) {
+		case IS_PRESENT: {
 			empWorkingHour=8;
 			System.out.println("Employee is Present");
+			break;
 		}
-		else if(empAttendance == IS_PART_TIEM) {
+		case IS_PART_TIEM: {
 			empWorkingHour=4;
 			System.out.println("Employee is Part Time Present");
+			break;
 		}
-		else {
+		default:
 			System.out.println("Employee is Absent");
+			break;
 		}
 		
 		int empDailyWage=getDailyWage(empWorkingHour);
