@@ -4,7 +4,8 @@
  * 
  * Checking attendance (i.e present / part time / absent)
  * Computing daily wage of employee
- * Computing monthly wage of employee
+ * Computing monthly wage of employee till Maximum Working 
+ * hours / days reach.
  * 
  * 
  * @author    Abhishek Shigavan
@@ -16,6 +17,8 @@ public class EmployeeWageComputation {
 	public static final int IS_PART_TIEM=2;
 	public static final int WAGE_PER_HOUR=20;
 	public static final int WORKING_DAY_PER_MONTH=20;
+	public static final int MAXIMUM_WORKING_DAY=20;
+	public static final int MAXIMUM_WORKING_HOUR=100;
 /**
    * Generate random attendance 
    * (i.e present / part time / absent)
@@ -45,13 +48,18 @@ public class EmployeeWageComputation {
 	public static void main(String[] args) {
 	
 		int monthlyWage=0;
+		int dayCounter=1;
+		int totalWorkingHour=0;
 		
 		System.out.println("Welcome To Employee Wage Computation...!!!");
 		
-		for(int day=1; day<=WORKING_DAY_PER_MONTH; day++) {
+		while(dayCounter <= MAXIMUM_WORKING_DAY && totalWorkingHour <= MAXIMUM_WORKING_HOUR) {
 		
 			//variables
 			int empWorkingHour=0;
+			
+			dayCounter++;
+			
 			int empAttendance = attendanceChecker();
 		
 			switch(empAttendance) {
@@ -66,9 +74,16 @@ public class EmployeeWageComputation {
 			default:
 				break;
 			}
-		
+
+			totalWorkingHour +=empWorkingHour;
+			
 			int empDailyWage=getDailyWage(empWorkingHour);
 			monthlyWage +=empDailyWage;
+			
+			if(totalWorkingHour == MAXIMUM_WORKING_HOUR) {
+				break;
+			}
+			
 		}
 
 		System.out.println("Monthly Wage of Employee : "+monthlyWage);
